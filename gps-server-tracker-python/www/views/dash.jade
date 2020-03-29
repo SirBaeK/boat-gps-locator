@@ -1,0 +1,51 @@
+div#wrapper
+    nav.navbar.navbar-default.navbar-static-top(role='navigation')
+        div.navbar-header
+            a.navbar-brand GPS Thingo v0.0001 alpha-alpha
+
+        ul.nav.navbar-top-links.navbar-right
+            li.dropdown(ng-if='user')
+                a.dropdown-toggle(data-toggle='dropdown')
+                    i.fa.fa-user.fa-fw
+                    span {{ user.email }}
+                    i.fa.fa-caret-down
+                ul.dropdown-menu.dropdown-user
+                    // li: a(href='#'): i.fa.fa-user.fa-fw User Profile
+                    // li: a(href='#'): i.fa.fa-gear.fa-fw Settings
+                    li: a(ng-click='user.logout()'): i.fa.fa-sign-out.fa-fw Logout
+
+        div.navbar-default.sidebar(role='navigation')
+            div.sidebar-nav.nabar-collapse
+                ul.nav#side-menu
+                    //li.sidebar-search
+                    //    div.input-group.custom-search-form
+                    //        input.form-control(type='text' placeholder='Filter')
+
+                    li.leftnav(ng-repeat='device in devices' ng-click='viewDevice(device.id)')
+                        a#device-nav(ng-class='{online: device.is_online, offline: !device.is_online, viewing: device.viewing}')
+                            i.fa.fa-car.leftnav
+                            div.leftnav {{ device.imei }}
+                                span.offline(ng-if='!device.is_online') (offline)
+                                div.leftnav-menu(ng-show='device.viewing')
+                                    span.btn-group(ng-if='device.is_online')
+                                        button.btn.btn-success.dropdown-toggle(type='button' data-toggle='dropdown')
+                                            | Track
+                                            span.caret
+                                        ul.dropdown-menu(role='menu')
+                                            li.dropdown-menu-item(ng-click='trackOnce(device.id)') Once
+                                            li.dropdown-menu-item(ng-click='trackMultiple(device.id)') Continuous
+                                            li.dropdown-menu-item(ng-click='trackMultiple(device.id)') OBD Data
+                                    span: button.btn.btn-danger(ng-click='removeDevice(device.id)') Delete
+
+                    li.sidebar-search
+                        div.input-group.custom-search-form
+                            form(ng-show='showAddDevice' ng-submit='addDevice()')
+                                input.form-control(type='text' ng-model='newImei' placeholder='Add IMEI')
+                                input(type='submit' value='+' style='display:none')
+
+    div#page-wrapper
+        div.container-fluid
+            div.row
+                div.col-lg-12
+                    ui-gmap-google-map(center='map.center' zoom='map.zoom' draggable='true' options='map.options' pan='true')
+                        ui-gmap-markers(models='devices' coords="'self'" fit='true' icon="'icon'" click='viewDevice' idKey='"id"')

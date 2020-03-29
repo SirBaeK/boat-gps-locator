@@ -1,0 +1,65 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="login-panel panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Welcome to GPS Thingo</h3>
+        </div>
+        <div class="panel-body">
+          <form id="login" ng-submit="login()" ng-if="!showRegister">
+            <fieldset>
+              <div class="form-group">
+                <input type="text" ng-model="login_user.email" placeholder="email" ng-required="true" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <input type="password" ng-model="login_user.password" placeholder="password" ng-required="true" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="login" class="btn btn-lg btn-success btn-block"/>
+              </div>
+              <div class="text-center"><a ng-click="clickRegister()">switch to register</a></div>
+            </fieldset>
+          </form>
+          <form id="register" ng-submit="register()" ng-if="showRegister" name="registerForm">
+            <fieldset>
+              <div class="form-group">
+                <input type="text" ng-model="register_user.email" placeholder="email" ng-required="true" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <!--i.fa.fa-eye#password-reveal(ng-click='togglePasswordShow()')-->
+                <input type="password" ng-model="register_user.password" placeholder="password" ng-required="true" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <input type="password" ng-model="register_user.password_again" placeholder="repeat password" ng-required="true" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="register" class="btn btn-lg btn-success btn-block"/>
+              </div>
+              <div class="text-center"><a ng-click="clickLogin()">switch to login</a></div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="panel-body">To Use
+        <ol>
+          <li>Register here<br/>Don't forget your password as there's no reset yet</li>
+          <li>Once logged in, add your device's IMEI<br/>Get this by SMSing the device, instructions in manual</li>
+          <li>Tell your device to start using gateway <b>59.167.194.239:9000</b></li>
+        </ol>
+      </div>
+      <div class="panel-body">Notes
+        <ul>
+          <li>Currently only <a href="http://coban.manufacturer.globalsources.com/si/6008828124217/pdtl/Car-GPS/1084239930/OBD-II-GPS306-tracker.htm">Coban GPS 306 device</a> (apparently chipset is "TK102") is supported</li>
+          <li>Why did I make this? Fun, plus I didn't want my GPS data going to some company in China</li>
+          <li>This is a privately-run proof-of-concept done as a hobby. That's why it's so feature-poor =) You're welcome to use it, but don't expect much</li>
+          <li>Use of the system is entirely at your own risk, I take no responsibility for ... anything</li>
+          <li>Your data will reside on my private server. While I'll take basic security precautions and won't intentionally publish or pass on to 3rd parties, if I do get hacked, well it's out of my hands</li>
+          <li><a href="https://trello.com/b/yqAj7edK/gps-tracker-server">Trello Board</a></li>
+          <li><a href="https://github.com/rdkls/gps-tracker-server">Source Code</a></li>
+          <li>Questions, comments or metaphysical observations feel free to email me <span style="unicode-bidi:bidi-override; direction: rtl;">moc.liamg@ognihtspg</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
