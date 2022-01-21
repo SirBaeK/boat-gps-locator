@@ -18,7 +18,7 @@ docutils==0.12
 gevent==1.0.1
 greenlet==0.4.5
 inotifyx==0.2.2
-ipython==2.3.1
+ipython==7.16.3
 itsdangerous==0.24
 mimerender==0.5.4
 mongoengine==0.8.7
